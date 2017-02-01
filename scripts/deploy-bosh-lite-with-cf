@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -eu
+
+my_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+root_dir="$( cd "${my_dir}/.." && pwd )"
+operations_dir="${root_dir}/operations"
+
+"${my_dir}/deploy-bosh-lite" \
+  -o "${operations_dir}/add-broker.yml" \
+  -o "${operations_dir}/register-proxy-route.yml" \
+  "$@"
