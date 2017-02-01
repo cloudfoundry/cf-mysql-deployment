@@ -108,15 +108,11 @@ properties:
         password: ((cf_mysql_mysql_cluster_health_password))
       galera_healthcheck:
         db_password: ((cf_mysql_mysql_galera_healthcheck_db_password))
-        endpoint_username: galera-healthcheck
         endpoint_password: ((cf_mysql_mysql_galera_healthcheck_endpoint_password))
       persistent_disk: 100000
       roadmin_password: ((cf_mysql_mysql_roadmin_password))
     proxy:
-      api_username: proxy
       api_password: ((cf_mysql_proxy_api_password))
-    external_host: ((cf_mysql_external_host))
-  nats: ((nats))
 
 variables:
 - name: cf_mysql_mysql_admin_password
