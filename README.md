@@ -1,7 +1,5 @@
 # Cloud Foundry MySQL Bosh Deployment
 
-# cf-mysql-deployment
-
 This repo contains a BOSH 2 manifest that defines tested topologies of cf-mysql-release.
 
 It takes advantange of new features such as:
