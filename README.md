@@ -57,12 +57,12 @@ gobosh \
   -o "cf-mysql-operations.yml"
 ```
 
-### Validated operations
+## Supported configurations
 
 In addition to the deployment topology described in the base manifest, other
 deployment toplogies are suppored via provided overrides files, listed below.
 
-#### Providing database as a service to Cloud Foundry
+### Providing database as a service to Cloud Foundry
 
 To integrate this with Cloud Foundry via the
 [Service Broker API](https://docs.cloudfoundry.org/services/api.html),
