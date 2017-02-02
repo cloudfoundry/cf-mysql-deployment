@@ -16,9 +16,11 @@ To follow the instructions below you will need:
 
 ## Upload Release
 
-`gobosh \
+```bash
+gobosh \
   -e <environment> \
-  upload-release https://bosh.io/d/github.com/cloudfoundry/cf-mysql-release`
+  upload-release https://bosh.io/d/github.com/cloudfoundry/cf-mysql-release
+```
 
 ## Prepare Variables File
 
