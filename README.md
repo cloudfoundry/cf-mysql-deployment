@@ -60,7 +60,8 @@ gobosh \
 ## Supported configurations
 
 In addition to the deployment topology described in the base manifest, other
-deployment toplogies are suppored via provided overrides files, listed below.
+supported deployment toplogies can be configured via provided overrides files,
+listed below.
 
 ### Providing database as a service to Cloud Foundry
 
