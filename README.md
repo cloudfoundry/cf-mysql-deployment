@@ -4,6 +4,8 @@
 
 This repo contains a BOSH 2 manifest that defines tested topologies of cf-mysql-release.
 
+It serves as the reference for the compatible release and stemcell versions.
+
 ## Usage
 
 ## Getting Started
@@ -13,14 +15,6 @@ To follow the instructions below you will need:
 * [bosh go CLI](https://github.com/cloudfoundry/bosh-cli): `brew install chendrix/tap/gobosh`
 * [cf-mysql-deployment](https://github.com/cloudfoundry/cf-mysql-deployment) repository
 * Prepare a [cloud-config](http://bosh.io/docs/cloud-config.html) and update your environment to use it
-
-## Upload Release
-
-```bash
-gobosh \
-  -e <environment> \
-  upload-release https://bosh.io/d/github.com/cloudfoundry/cf-mysql-release
-```
 
 ## Prepare Variables File
 
