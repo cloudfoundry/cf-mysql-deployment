@@ -1,14 +1,5 @@
 name: cf-mysql
 
-stemcells:
-- alias: default
-  os: ubuntu-trusty
-  version: latest
-
-releases:
-- name: cf-mysql
-  version: latest
-
 update:
   canaries: 1
   canary_watch_time: 10000-600000
@@ -127,3 +118,11 @@ variables:
   type: password
 - name: cf_mysql_proxy_api_password
   type: password
+
+releases:
+- name: cf-mysql
+  version: latest
+stemcells:
+- alias: default
+  os: ubuntu-trusty
+  version: latest
