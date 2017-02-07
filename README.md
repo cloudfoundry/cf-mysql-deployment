@@ -2,7 +2,9 @@
 
 This repo contains a BOSH 2 manifest that defines tested topologies of cf-mysql-release.
 
-It takes advantange of new features such as:
+It serves as the reference for the compatible release and stemcell versions.
+
+This repo takes advantange of new features such as:
 
 - [cloud config](https://bosh.io/docs/cloud-config.html)
 - [job links](https://bosh.io/docs/links.html)
@@ -15,7 +17,7 @@ with the pre-requisites, please contact the BOSH team for help
 
 ## Usage
 
-## New deployments
+### New deployments
 
 New deployments will work "out of the box" with little additional configuration.
 There are two mechanisms for providing credentials to the deployment:
@@ -47,7 +49,7 @@ bosh \
   -o <path-to-operations
 ```
 
-## Upgrading from previous deployment topologies
+### Upgrading from previous deployment topologies
 
 If you are upgrading an existing deployment of cf-mysql-release with a manifest
 that does not take advantage of these new features, for example if the manifest
@@ -78,14 +80,6 @@ bosh \
   [-o <path-to-additional-operations>] \
   -l <path-to-vars-file> \
   [-l <path-to-additional-vars-files>]
-```
-
-## Upload Release
-
-```bash
-gobosh \
-  -e <environment> \
-  upload-release https://bosh.io/d/github.com/cloudfoundry/cf-mysql-release
 ```
 
 ## Operations files
