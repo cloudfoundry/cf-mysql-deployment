@@ -3,7 +3,9 @@
   path: /releases/name=routing?
   value:
     name: routing
-    version: latest
+    version: "0.145.0"
+    url: https://bosh.io/d/github.com/cloudfoundry-incubator/cf-routing-release?v=0.145.0
+    sha1: 8a5cd4ba73fcef6f5daef848b56e1d12da5f698c
 
 - type: replace
   path: /instance_groups/-
