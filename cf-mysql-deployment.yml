@@ -91,6 +91,8 @@ instance_groups:
     release: cf-mysql
     properties:
       cf_mysql:
+        mysql:
+          admin_password: ((cf_mysql_mysql_admin_password))
         smoke_tests:
           standalone_tests_only: true
         proxy:
