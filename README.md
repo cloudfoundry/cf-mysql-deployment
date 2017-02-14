@@ -4,7 +4,7 @@ This repo contains a BOSH 2 manifest that defines tested topologies of cf-mysql-
 
 It serves as the reference for the compatible release and stemcell versions.
 
-This repo takes advantange of new features such as:
+This repo takes advantage of new features such as:
 
 - [cloud config](https://bosh.io/docs/cloud-config.html)
 - [job links](https://bosh.io/docs/links.html)
