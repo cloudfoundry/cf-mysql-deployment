@@ -138,3 +138,16 @@ We provide a default set of variables intended for a local bosh-lite environment
 [here](https://github.com/cloudfoundry/cf-mysql-deployment/tree/master/bosh-lite/default-vars.yml).
 
 Use this as an example for your environment-specific var-file, e.g. `cf-mysql-vars.yml`
+
+## Cross-deployment links
+
+By default, this deployment assumes that some variables (e.g. nats) are provided
+by cross-deployment links from a deployment named `cf`.
+This will be true if Cloud Foundry was deployed via
+[cf-deployment](https://github.com/cloudfoundry/cf-deployment).
+
+If you wish to disable cross-deployment links, use the
+`disable-cross-deployment-links.yml` operations file.
+
+Disabling cross-deployment links will require these values to be provided
+manually (e.g. by passing `-v nats={...}` to the `bosh deploy` command).

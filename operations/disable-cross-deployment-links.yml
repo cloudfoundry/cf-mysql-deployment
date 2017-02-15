@@ -1,0 +1,18 @@
+---
+- type: replace
+  path: /instance_groups/name=proxy/jobs/name=route_registrar?/consumes
+  value:
+    nats: nil
+
+- type: replace
+  path: /instance_groups/name=proxy/jobs/name=route_registrar?/properties/nats
+  value: ((nats))
+
+- type: replace
+  path: /instance_groups/name=broker/jobs/name=route_registrar?/consumes
+  value:
+    nats: nil
+
+- type: replace
+  path: /instance_groups/name=broker/jobs/name=route_registrar?/properties/nats
+  value: ((nats))
