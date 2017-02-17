@@ -84,6 +84,11 @@ bosh \
 
 ## Operations files
 
+Supported operations files (e.g. adding a broker for
+Cloud Foundry integration) can be found in the
+[operations](https://github.com/cloudfoundry/cf-mysql-deployment/tree/master/operations)
+directory.
+
 The [manifest template](https://github.com/cloudfoundry/cf-mysql-deployment/tree/master/cf-mysql-deployment.yml)
 is not intended to be modified; any changes you need to make should be added to
 environment-specific operations files, e.g. `cf-mysql-operations.yml`
@@ -92,10 +97,6 @@ Operations files are optional files for modifying the deployment manifest.
 They are intended for structural and non-secret changes, e.g. modifying the
 `cf_mysql.mysql.max_connections` property. Secret values should be placed in
 variables files (see below for more information on variables files).
-
-A set of operations files for common functionality (e.g. adding a broker for
-Cloud Foundry integration) is provided
-[here](https://github.com/cloudfoundry/cf-mysql-deployment/tree/master/operations).
 
 The syntax for operations files is detailed
 [here](https://github.com/cppforlife/go-patch/tree/master/docs/examples.md),
