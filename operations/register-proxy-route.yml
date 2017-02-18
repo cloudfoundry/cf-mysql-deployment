@@ -25,5 +25,16 @@
           port: 8080 # must match the value of 'cf_mysql.proxy.api_port'
           registration_interval: 10s
           uris:
-          - proxy-((cf_mysql_external_host))
+          - &proxy_base_uri proxy-((cf_mysql_external_host))
           prepend_instance_index: true
+        - name: cf-mysql-proxy-aggregator
+          port: 8082 # must match the value of 'cf_mysql.proxy.api_aggregator_port'
+          registration_interval: 10s
+          uris:
+          - *proxy_base_uri
+          # The switchboard aggregator page assumes there is only a single route registered for the proxies
+
+# make sure to match what the route_registrar is registering above in cf-mysql-proxy route
+- type: replace
+  path: /instance_groups/name=proxy/jobs/name=proxy/properties/cf_mysql/proxy/api_uri?
+  value: *proxy_base_uri
