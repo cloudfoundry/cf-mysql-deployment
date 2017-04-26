@@ -103,3 +103,39 @@
 - type: replace
   path: /properties/nats?
   value: ((nats))
+
+- type: replace
+  path: /variables/-
+  value:
+    name: cf_mysql_broker_db_password
+    type: password
+
+- type: replace
+  path: /variables/-
+  value:
+    name: cf_mysql_broker_auth_password
+    type: password
+
+- type: replace
+  path: /variables/-
+  value:
+    name: cf_mysql_broker_cookie_secret
+    type: password
+
+- type: replace
+  path: /variables/-
+  value:
+    name: cf_mysql_broker_quota_enforcer_password
+    type: password
+
+- type: replace
+  path: /variables/-
+  value:
+    name: cf_mysql_p_mysql_dashboard_secret
+    type: password  
+
+- type: replace
+  path: /variables/-
+  value:
+    name: cf_mysql_smoke_tests_password
+    type: password
