@@ -6,6 +6,7 @@ cf_mysql_broker_auth_password: password
 cf_mysql_broker_cookie_secret: 94046872-2602-4ca6-8d07-8b0da9762477
 cf_mysql_broker_quota_enforcer_password: password
 cf_mysql_external_host: p-mysql.bosh-lite.com
+cf_mysql_host:
 cf_mysql_mysql_admin_password: password
 cf_mysql_mysql_cluster_health_password: password
 cf_mysql_mysql_galera_healthcheck_endpoint_password: password
