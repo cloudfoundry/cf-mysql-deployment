@@ -3,9 +3,9 @@
   path: /releases/name=routing?
   value:
     name: routing
-    version: "0.145.0"
-    url: https://bosh.io/d/github.com/cloudfoundry-incubator/cf-routing-release?v=0.145.0
-    sha1: 8a5cd4ba73fcef6f5daef848b56e1d12da5f698c
+    version: "0.154.0"
+    url: https://bosh.io/d/github.com/cloudfoundry-incubator/cf-routing-release?v=0.154.0
+    sha1: 6f15de5699cbbce8a49ac3a1a49185460ef93f95
 
 - type: replace
   path: /instance_groups/-
@@ -27,6 +27,7 @@
           app_domains: ((app_domains))
           skip_ssl_validation: ((cf_skip_ssl_validation))
         cf_mysql:
+          host: ((cf_mysql_host))
           external_host: ((cf_mysql_external_host))
           mysql:
             admin_password: ((cf_mysql_mysql_admin_password))
