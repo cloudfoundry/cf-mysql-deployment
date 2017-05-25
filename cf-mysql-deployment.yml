@@ -45,6 +45,11 @@ instance_groups:
       cf_mysql:
         proxy:
           api_password: ((cf_mysql_proxy_api_password))
+    provides:
+      mysql-database:
+        as: mysql-database
+        shared: true
+
   migrated_from:
   - {name: proxy_z1, az: z1}
   - {name: proxy_z2, az: z2}
