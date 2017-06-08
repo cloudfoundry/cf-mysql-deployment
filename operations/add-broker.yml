@@ -142,6 +142,12 @@
   path: /instance_groups/name=smoke-tests/jobs/name=smoke-tests/properties/cf_mysql/smoke_tests/standalone_tests_only?
   value: false
 
+- type: replace
+  path: /instance_groups/name=mysql/jobs/-
+  value:
+    name: cf-mysql-broker-user
+    release: cf-mysql
+
 - type: remove
   path: /instance_groups/name=mysql/jobs/name=smoke-tests-user
 
@@ -172,3 +178,15 @@
 - type: replace
   path: /instance_groups/name=smoke-tests/jobs/name=smoke-tests/properties/cf_mysql/broker?/services
   value: *broker_services
+
+- type: replace
+  path: /variables/-
+  value:
+    name: cf_mysql_broker_db_password
+    type: password
+
+- type: replace
+  path: /variables/-
+  value:
+    name: cf_mysql_broker_quota_enforcer_password
+    type: password
