@@ -17,6 +17,12 @@ instance_groups:
   persistent_disk: 10000
   jobs:
   - {release: cf-mysql, name: mysql}
+  - name: smoke-tests-user
+    release: cf-mysql
+    properties:
+      cf_mysql:
+        smoke_tests:
+          db_password: ((cf_mysql_smoke_tests_db_password))
   migrated_from:
   - {name: mysql_z1, az: z1}
   - {name: mysql_z2, az: z2}
@@ -99,6 +105,7 @@ instance_groups:
         mysql:
           admin_password: ((cf_mysql_mysql_admin_password))
         smoke_tests:
+          db_password: ((cf_mysql_smoke_tests_db_password))
           standalone_tests_only: true
         proxy:
           api_password: ((cf_mysql_proxy_api_password))
@@ -127,6 +134,8 @@ variables:
 - name: cf_mysql_mysql_roadmin_password
   type: password
 - name: cf_mysql_proxy_api_password
+  type: password
+- name: cf_mysql_smoke_tests_db_password
   type: password
 
 releases:

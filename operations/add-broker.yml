@@ -142,6 +142,12 @@
   path: /instance_groups/name=smoke-tests/jobs/name=smoke-tests/properties/cf_mysql/smoke_tests/standalone_tests_only?
   value: false
 
+- type: remove
+  path: /instance_groups/name=mysql/jobs/name=smoke-tests-user
+
+- type: remove
+  path: /instance_groups/name=smoke-tests/jobs/name=smoke-tests/properties/cf_mysql/smoke_tests/db_password
+
 - type: replace
   path: /instance_groups/name=smoke-tests/jobs/name=smoke-tests/properties/cf_mysql/external_host?
   value: ((cf_mysql_external_host))
