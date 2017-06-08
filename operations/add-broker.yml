@@ -30,7 +30,6 @@
           host: ((cf_mysql_host))
           external_host: ((cf_mysql_external_host))
           mysql:
-            admin_password: ((cf_mysql_mysql_admin_password))
             persistent_disk: 100000
           broker:
             db_password: ((cf_mysql_broker_db_password))
