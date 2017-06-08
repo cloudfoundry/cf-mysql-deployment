@@ -120,7 +120,6 @@ properties:
         db_password: ((cf_mysql_mysql_galera_healthcheck_db_password))
         endpoint_password: ((cf_mysql_mysql_galera_healthcheck_endpoint_password))
       persistent_disk: 100000
-      roadmin_password: ((cf_mysql_mysql_roadmin_password))
 
 variables:
 - name: cf_mysql_mysql_admin_password
@@ -130,8 +129,6 @@ variables:
 - name: cf_mysql_mysql_galera_healthcheck_db_password
   type: password
 - name: cf_mysql_mysql_galera_healthcheck_endpoint_password
-  type: password
-- name: cf_mysql_mysql_roadmin_password
   type: password
 - name: cf_mysql_proxy_api_password
   type: password

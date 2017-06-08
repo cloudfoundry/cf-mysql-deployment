@@ -1,0 +1,13 @@
+- type: replace
+  path: /properties/cf_mysql/mysql/roadmin_enabled?
+  value: true
+
+- type: replace
+  path: /properties/cf_mysql/mysql/roadmin_password?
+  value: ((cf_mysql_mysql_roadmin_password))
+
+- type: replace
+  path: /variables/-
+  value:
+    name: cf_mysql_mysql_roadmin_password
+    type: password
