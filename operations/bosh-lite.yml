@@ -1,0 +1,4 @@
+---
+- type: replace
+  path: /properties/cf_mysql/mysql/innodb_buffer_pool_size?
+  value: 128M
