@@ -119,7 +119,7 @@ properties:
       galera_healthcheck:
         db_password: ((cf_mysql_mysql_galera_healthcheck_db_password))
         endpoint_password: ((cf_mysql_mysql_galera_healthcheck_endpoint_password))
-      persistent_disk: 100000
+      persistent_disk: 10000
 
 variables:
 - name: cf_mysql_mysql_admin_password
