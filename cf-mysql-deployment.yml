@@ -101,6 +101,7 @@ instance_groups:
     cf_mysql:
       smoke_tests:
         standalone_tests_only: true
+        password: ((cf_mysql_smoke_tests_password))
 
 properties:
   cf:
