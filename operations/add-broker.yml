@@ -44,6 +44,7 @@
   path: /properties/cf_mysql/broker?
   value:
     db_password: ((cf_mysql_broker_db_password))
+    auth_username: admin
     auth_password: ((cf_mysql_broker_auth_password))
     cookie_secret: ((cf_mysql_broker_cookie_secret))
     quota_enforcer:
@@ -95,6 +96,10 @@
 - type: replace
   path: /instance_groups/name=smoke-tests/properties/cf_mysql/smoke_tests/password?
   value: ((cf_mysql_smoke_tests_password))
+
+- type: replace
+  path: /properties/cf_mysql/host?
+  value: ((cf_mysql_host))
 
 - type: replace
   path: /properties/cf_mysql/external_host?

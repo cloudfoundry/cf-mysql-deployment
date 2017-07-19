@@ -96,6 +96,8 @@ instance_groups:
   jobs:
   - {release: cf-mysql, name: smoke-tests}
   properties:
+    cf:
+      api_url: ((cf_api_url))
     cf_mysql:
       smoke_tests:
         standalone_tests_only: true
