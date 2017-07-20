@@ -120,11 +120,13 @@ properties:
         endpoint_username: galera-healthcheck
         endpoint_password: ((cf_mysql_mysql_galera_healthcheck_endpoint_password))
       persistent_disk: 100000
+      port: ((cf_mysql_mysql_port))
       roadmin_password: ((cf_mysql_mysql_roadmin_password))
     proxy:
       api_username: proxy
       api_password: ((cf_mysql_proxy_api_password))
     external_host: ((cf_mysql_external_host))
+    host: ((cf_mysql_host))
   nats: ((nats))
 
 variables:
