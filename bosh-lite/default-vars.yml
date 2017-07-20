@@ -25,7 +25,7 @@ cf_skip_ssl_validation: true
 cf_system_domain:
 nats:
   machines:
-  - 10.244.0.6
+  - 10.244.0.129
   user: nats
   password: nats
   port: 4222
