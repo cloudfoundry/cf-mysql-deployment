@@ -211,7 +211,7 @@ They are intended for structural and non-secret changes, e.g. modifying the
 variables files (see below for more information on variables files).
 
 The syntax for operations files is detailed
-[here](https://github.com/cppforlife/go-patch/tree/master/docs/examples.md),
+[here](http://bosh.io/docs/cli-ops-files.html),
 and example operations files can be found
 [here](https://github.com/cloudfoundry/cf-mysql-deployment/tree/master/operations).
 
