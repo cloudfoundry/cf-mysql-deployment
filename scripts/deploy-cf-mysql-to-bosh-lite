@@ -1,17 +1,19 @@
 #!/bin/bash
 
-set -eu
+set -eux
 
 my_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 root_dir="$( cd "${my_dir}/.." && pwd )"
 
-export BOSH_ENVIRONMENT="${BOSH_ENVIRONMENT:-https://192.168.50.4:25555}"
+export BOSH_ENVIRONMENT="${BOSH_ENVIRONMENT:-192.168.50.6}"
 export BOSH_DEPLOYMENT="${BOSH_DEPLOYMENT:-cf-mysql}"
 
 pushd "${root_dir}" > /dev/null
   gobosh \
     deploy \
     "${root_dir}/cf-mysql-deployment.yml" \
+    -o "${root_dir}/operations/bosh-lite.yml" \
+    -o "${root_dir}/operations/latest-versions.yml" \
     -l "${root_dir}/bosh-lite/default-vars.yml" \
     --no-redact \
     "$@"
