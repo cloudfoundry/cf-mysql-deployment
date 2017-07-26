@@ -48,9 +48,15 @@ instance_groups:
   vm_type: default
   stemcell: default
   jobs:
-  - {release: cf-mysql, name: proxy}
-  properties:
-    cf_mysql:
+  - name: proxy
+    release: cf-mysql
+    properties:
+      cf_mysql:
+        external_host: ((cf_mysql_external_host))
+        proxy:
+          api_username: proxy
+          api_password: ((cf_mysql_proxy_api_password))
+      nats: ((nats))
       standalone: true
   migrated_from:
   - {name: proxy_z1, az: z1}
@@ -94,14 +100,20 @@ instance_groups:
   vm_type: default
   stemcell: default
   jobs:
-  - {release: cf-mysql, name: smoke-tests}
-  properties:
-    cf:
-      api_url: ((cf_api_url))
-    cf_mysql:
-      smoke_tests:
-        standalone_tests_only: true
-        password: ((cf_mysql_smoke_tests_password))
+  - name: smoke-tests
+    release: cf-mysql
+    properties:
+      cf:
+        api_url: ((cf_api_url))
+      cf_mysql:
+        mysql:
+          admin_password: ((cf_mysql_mysql_admin_password))
+        proxy:
+          api_username: proxy
+          api_password: ((cf_mysql_proxy_api_password))
+        smoke_tests:
+          standalone_tests_only: true
+          password: ((cf_mysql_smoke_tests_password))
 
 properties:
   cf:
@@ -122,7 +134,6 @@ properties:
       persistent_disk: 100000
       roadmin_password: ((cf_mysql_mysql_roadmin_password))
     proxy:
-      api_username: proxy
       api_password: ((cf_mysql_proxy_api_password))
     external_host: ((cf_mysql_external_host))
   nats: ((nats))
