@@ -56,8 +56,8 @@ instance_groups:
         proxy:
           api_username: proxy
           api_password: ((cf_mysql_proxy_api_password))
+        standalone: true
       nats: ((nats))
-      standalone: true
   migrated_from:
   - {name: proxy_z1, az: z1}
   - {name: proxy_z2, az: z2}
