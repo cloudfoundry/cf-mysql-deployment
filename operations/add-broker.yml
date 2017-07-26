@@ -49,7 +49,7 @@
     cookie_secret: ((cf_mysql_broker_cookie_secret))
     quota_enforcer:
       password: ((cf_mysql_broker_quota_enforcer_password))
-    services:
+    services: &broker_services
     - name: p-mysql
       id: 44b26033-1f54-4087-b7bc-da9652c2a539
       dashboard_client:
@@ -83,6 +83,10 @@
 - type: replace
   path: /instance_groups/name=smoke-tests/jobs/name=smoke-tests/properties/cf_mysql/smoke_tests/standalone_tests_only?
   value: false
+
+- type: replace
+  path: /instance_groups/name=smoke-tests/jobs/name=smoke-tests/properties/cf_mysql/broker?/services
+  value: *broker_services
 
 - type: replace
   path: /instance_groups/name=smoke-tests/jobs/name=smoke-tests/properties/cf_mysql/smoke_tests/password?

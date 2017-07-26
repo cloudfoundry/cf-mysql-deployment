@@ -104,8 +104,13 @@ instance_groups:
     release: cf-mysql
     properties:
       cf:
+        admin_username: ((cf_admin_username))
+        admin_password: ((cf_admin_password))
         api_url: ((cf_api_url))
+        app_domains: ((app_domains))
+        skip_ssl_validation: ((cf_skip_ssl_validation))
       cf_mysql:
+        external_host: ((cf_mysql_external_host))
         mysql:
           admin_password: ((cf_mysql_mysql_admin_password))
         proxy:
@@ -120,7 +125,6 @@ properties:
     admin_username: ((cf_admin_username))
     admin_password: ((cf_admin_password))
     api_url: ((cf_api_url))
-    app_domains: ((app_domains))
     skip_ssl_validation: ((cf_skip_ssl_validation))
   cf_mysql:
     mysql:
