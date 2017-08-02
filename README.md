@@ -1,5 +1,20 @@
 # Cloud Foundry MySQL Bosh Deployment
 
+## Table of contents
+
+[Usage](#usage)
+
+[Deploying](#deploying)
+
+[Security Groups](#security-groups)
+
+[Registering the Service Broker](#registering-broker)
+
+[Smoke Tests](#smoke-tests)
+
+[Deregistering the Service Broker](#deregistering-broker)
+
+
 This repo contains a BOSH 2 manifest that defines tested topologies of cf-mysql-release.
 
 It serves as the reference for the compatible release and stemcell versions.
@@ -15,6 +30,7 @@ Please refer to BOSH documentation for more details. If you're having troubles
 with the pre-requisites, please contact the BOSH team for help
 (perhaps on [slack](https://slack.cloudfoundry.org/)).
 
+<a name="usage"></a>
 ## Usage
 
 ### Prerequisites
@@ -41,7 +57,7 @@ The latest final release expects the Ubuntu Trusty (14.04) go_agent stemcell ver
 <a name="upload_release"></a>
 ### Upload Release
 
-You can use a pre-built final release or build a dev release from any of the branches described in <a href="#branches">Getting the Code</a>.
+You can use a pre-built final release or build a dev release from any of the branches described in <a href="CONFIGURING.md#branches">Getting the Code</a>.
 
 Final releases are stable releases created periodically for completed features. They also contain pre-compiled packages, which makes deployment much faster. To deploy the latest final release, simply check out the **master** branch. This will contain the latest final release and accompanying materials to generate a manifest. If you would like to deploy an earlier final release, use `git checkout <tag>` to obtain both the release and corresponding manifest generation materials. It's important that the manifest generation materials are consistent with the release.
 
@@ -82,7 +98,8 @@ Once a load balancer is configured, the brokers will hand out the address of the
 - **Note:** When using an Elastic Load Balancer (ELB) on Amazon, make sure to create the ELB in the same VPC as your cf-mysql deployment
 - **Note:** For all load balancers, take special care to configure health checks to use the health_port of the proxies (default 1936). Do not configure the load balancer health check to use port 3306.
 
-<a name="deployment_components"></a>
+<a name="deployment"></a>
+## Deploying
 ### Deployment Components
 
 #### Database nodes
@@ -94,40 +111,13 @@ The MariaDB cluster nodes are configured by default with 10GB of persistent disk
 
 #### Proxy nodes
 
-There are two proxy instances. The second proxy is intended to be used in a failover capacity. 
+There are two proxy instances. The second proxy is intended to be used in a failover capacity.
 In the event the first proxy fails, the second proxy will still be able to route requests to the mysql nodes.
 
 #### Broker nodes
 
 There are also two broker instances.
 The brokers each register a route with the router, which load balances requests across the brokers.
-
-<a name="registering-broker"></a>
-## Registering the Service Broker
-
-After registering the service broker, the MySQL service will be visible in the Services Marketplace; using the [CLI](https://github.com/cloudfoundry/cli), run `cf marketplace`.
-
-### BOSH errand
-
-```
-$ bosh2 -e YOUR_ENV -d cf-mysql run-errand broker-registrar
-```
-
-### Manually
-
-1. First register the broker using the `cf` CLI.  You must be logged in as an admin.
-
-    ```
-    $ cf create-service-broker p-mysql BROKER_USERNAME BROKER_PASSWORD URL
-    ```
-
-    `BROKER_USERNAME` and `BROKER_PASSWORD` are the credentials Cloud Foundry will use to authenticate when making API calls to the service broker. Use the values for manifest properties `jobs.cf-mysql-broker.properties.auth_username` and `jobs.cf-mysql-broker.properties.auth_password`.
-
-    `URL` specifies where the Cloud Controller will access the MySQL broker. Use the value of the manifest property `jobs.cf-mysql-broker.properties.external_host`. By default, this value is set to `p-mysql.<properties.domain>` (in spiff: `"p-mysql." .properties.domain`).
-
-    For more information, see [Managing Service Brokers](http://docs.cloudfoundry.org/services/managing-service-brokers.html).
-
-2. Then [make the service plan public](http://docs.cloudfoundry.org/services/managing-service-brokers.html#make-plans-public).
 
 ### New deployments
 
@@ -234,7 +224,7 @@ following to `cf-mysql-operations.yml`:
   value: small
 ```
 
-## Variables files
+### Variables files
 
 Variables files are a flat-format key-value yaml file which contains sensitive
 information such as password, ssl keys/certs etc.
@@ -252,7 +242,7 @@ We provide a default set of variables intended for a local bosh-lite environment
 
 Use this as an example for your environment-specific var-file, e.g. `cf-mysql-vars.yml`
 
-## Cross-deployment links
+### Cross-deployment links
 
 By default, this deployment assumes that some variables (e.g. nats) are provided
 by cross-deployment links from a deployment named `cf`.
@@ -265,6 +255,7 @@ If you wish to disable cross-deployment links, use the
 Disabling cross-deployment links will require these values to be provided
 manually (e.g. by passing `-v nats={...}` to the `bosh deploy` command).
 
+<a name="security-groups"></a>
 ## Security Groups
 
 By default, applications cannot to connect to IP addresses on the private network,
@@ -308,6 +299,33 @@ groups are pre-configured.
 
 Security group changes are only applied to new application containers;
 existing apps must be restarted.
+
+<a name="registering-broker"></a>
+## Registering the Service Broker
+
+After registering the service broker, the MySQL service will be visible in the Services Marketplace; using the [CLI](https://github.com/cloudfoundry/cli), run `cf marketplace`.
+
+### BOSH errand
+
+```
+$ bosh2 -e YOUR_ENV -d cf-mysql run-errand broker-registrar
+```
+
+### Manually
+
+1. First register the broker using the `cf` CLI.  You must be logged in as an admin.
+
+    ```
+    $ cf create-service-broker p-mysql BROKER_USERNAME BROKER_PASSWORD URL
+    ```
+
+    `BROKER_USERNAME` and `BROKER_PASSWORD` are the credentials Cloud Foundry will use to authenticate when making API calls to the service broker. Use the values for manifest properties `jobs.cf-mysql-broker.properties.auth_username` and `jobs.cf-mysql-broker.properties.auth_password`.
+
+    `URL` specifies where the Cloud Controller will access the MySQL broker. Use the value of the manifest property `jobs.cf-mysql-broker.properties.external_host`. By default, this value is set to `p-mysql.<properties.domain>` (in spiff: `"p-mysql." .properties.domain`).
+
+    For more information, see [Managing Service Brokers](http://docs.cloudfoundry.org/services/managing-service-brokers.html).
+
+2. Then [make the service plan public](http://docs.cloudfoundry.org/services/managing-service-brokers.html#make-plans-public).
 
 
 <a name="smoke-tests"></a>
