@@ -57,7 +57,7 @@ The latest final release expects the Ubuntu Trusty (14.04) go_agent stemcell ver
 <a name="upload_release"></a>
 ### Upload Release
 
-You can use a pre-built final release or build a dev release from any of the branches described in <a href="CONFIGURING.md#branches">Getting the Code</a>.
+You can use a pre-built final release or build a dev release from any of the branches described in <a href="https://github.com/cloudfoundry/cf-mysql-release/blob/develop/CONTRIBUTING.md#branches">Getting the Code</a>.
 
 Final releases are stable releases created periodically for completed features. They also contain pre-compiled packages, which makes deployment much faster. To deploy the latest final release, simply check out the **master** branch. This will contain the latest final release and accompanying materials to generate a manifest. If you would like to deploy an earlier final release, use `git checkout <tag>` to obtain both the release and corresponding manifest generation materials. It's important that the manifest generation materials are consistent with the release.
 
