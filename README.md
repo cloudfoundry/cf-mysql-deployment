@@ -98,6 +98,8 @@ Once a load balancer is configured, the brokers will hand out the address of the
 - **Note:** When using an Elastic Load Balancer (ELB) on Amazon, make sure to create the ELB in the same VPC as your cf-mysql deployment
 - **Note:** For all load balancers, take special care to configure health checks to use the health_port of the proxies (default 1936). Do not configure the load balancer health check to use port 3306.
 
+In order for the MySQL deployment to attach the proxy instances to your configured load balancer, you need to use the [proxy-elb.yml](https://github.com/cloudfoundry/cf-mysql-deployment/blob/develop/operations/proxy-elb.yml) opsfile. This opsfile requires a [vm_extension](https://bosh.io/docs/cloud-config.html#vm-extensions) in your [cloud-config](https://bosh.io/docs/cloud-config.html) which references your load balancer and also defines the specific requirements for your IaaS. You'll need to consult your IaaS documentation as well as your BOSH CPI documentation for the specifics of the `cloud_properties` definitions for use in your `vm_extension`. You can read more specifics about configuration of the proxies [here](https://github.com/cloudfoundry/cf-mysql-release/blob/develop/docs/proxy.md).
+
 <a name="deployment"></a>
 ## Deploying
 ### Deployment Components
