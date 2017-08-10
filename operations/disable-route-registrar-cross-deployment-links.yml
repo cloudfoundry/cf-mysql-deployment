@@ -16,17 +16,3 @@
 - type: replace
   path: /instance_groups/name=broker/jobs/name=route_registrar?/properties/nats
   value: ((nats))
-
-- type: replace
-  path: /instance_groups/name=smoke-tests/jobs/name=smoke-tests/properties/cf?
-  value:
-    admin_username: ((cf_admin_username))
-    admin_password: ((cf_admin_password))
-    api_url: ((cf_api_url))
-    app_domains: ((app_domains))
-    skip_ssl_validation: ((cf_skip_ssl_validation))
-
-- type: replace
-  path: /instance_groups/name=smoke-tests/jobs/name=smoke-tests/consumes?
-  value:
-    cloud_controller: nil 

@@ -23,7 +23,7 @@ Example usage:
 -v skip_ssl_validation=false
 ```
 
-### [disable-cross-deployment-links.yml](https://github.com/cloudfoundry/cf-mysql-deployment/tree/master/operations/disable-cross-deployment-links.yml)
+### Disabling cross deployment links
 
 Used when the dependent deployments (i.e. Cloud Foundry) do not expose properties
 via cross-deployment links.
@@ -43,9 +43,15 @@ properties which would otherwise be provided via links, e.g. NATS.
 Example usage:
 
 ```
--o disable-cross-deployment-links.yml \
+-o disable-smoke-tests-cross-deployment-links.yml \
+-o disable-route-registrar-cross-deployment-links.yml \
 
--v nats="{password: some-nats-password, user: nats, port: 4222, machines: [10.0.31.191]}"
+-v nats="{password: some-nats-password, user: nats, port: 4222, machines: [10.0.31.191]}" \
+-v admin_username=admin \
+-v admin_password=password \
+-v api_url=api.mycf.com \
+-v app_domains=[mycf.com] \
+-v skip_ssl_validation=true \
 ```
 
 ### [mysql-host.yml](https://github.com/cloudfoundry/cf-mysql-deployment/tree/master/operations/mysql-host.yml)
