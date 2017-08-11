@@ -179,14 +179,9 @@ repository, then be aware:
 
 1. The base manifest refers to AZs called `z1`, `z2`, and `z3`. If your
 cloud-config doesn't have those AZs, it will result in an error.
-1. The base manifest will not deploy brokers, nor try to register
-routes for the proxies with a Cloud Foundry router. If you wish to preserve this
-behavior you will need to include the
-[add brokers](https://github.com/cloudfoundry/cf-mysql-deployment/tree/master/operations/add-broker.yml)
-and
-[register proxy routes](https://github.com/cloudfoundry/cf-mysql-deployment/tree/master/operations/register-proxy-route.yml) operations files.
-1. Create custom operations files to map any non-default configuration (e.g.
-the number of maximum connections).
+1. The base manifest will not deploy brokers, nor try to register routes for the proxies with a Cloud Foundry router. If you wish to preserve this behavior you will need to include the [add brokers](https://github.com/cloudfoundry/cf-mysql-deployment/tree/master/operations/add-broker.yml) and [register proxy routes](https://github.com/cloudfoundry/cf-mysql-deployment/tree/master/operations/register-proxy-route.yml) operations files.
+1. Create custom operations files to map any non-default configuration (e.g. the number of maximum connections).
+1. Create a custom operation file to migrate your BOSH 1 `jobs` and static IPs to their new BOSH 2 `instance_groups`. See the section below for [more information](#operations-file-for-migrating-from-bosh-1-style-manifest-to-a-bosh-2-style-manifest).
 1. Create a variables file to contain the credentials of the existing deployment.
  - Using `--vars-store` is not recommended as it will result in credentials being rotated which can cause issues.
 1. Run the following command:
@@ -201,6 +196,32 @@ bosh \
   [-o <path-to-additional-operations>] \
   -l <path-to-vars-file> \
   [-l <path-to-additional-vars-files>]
+```
+
+#### Operations file for migrating from BOSH 1 style manifest to a BOSH 2 style manifest
+Refer to [these docs](https://bosh.io/docs/migrated-from.html) on migrating from a BOSH 1 style manifest, then create an ops file to mix in those migrations into the base deployment manifest. See below for an example:
+
+```yaml
+
+---
+- type: replace
+  path: /instance_groups/name=mysql/migrated_from?
+  value:
+  - name: mysql_z1
+    az: z1
+  - name: mysql_z2
+    az: z2
+  - name: mysql_z3
+    az: z3
+
+- type: replace
+  path: /instance_groups/name=mysql/networks
+  value:
+  - name: default
+    static_ips:
+    - 10.10.0.1
+    - 10.10.0.2
+    - 10.10.0.3
 ```
 
 ## Operations files
@@ -237,6 +258,7 @@ named "large". If your cloud-config specifies a type "small", you would add the
 following to `cf-mysql-operations.yml`:
 
 ```yml
+
 ---
 - type: replace
   path: /instance_groups/name=mysql/persistent_disk_type
