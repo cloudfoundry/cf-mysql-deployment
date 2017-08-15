@@ -8,10 +8,6 @@
     sha1: 6f15de5699cbbce8a49ac3a1a49185460ef93f95
 
 - type: replace
-  path: /properties/cf_mysql/external_host?
-  value: ((cf_mysql_external_host))
-
-- type: replace
   path: /instance_groups/name=proxy/jobs/-
   value:
     release: routing

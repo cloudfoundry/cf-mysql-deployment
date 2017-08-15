@@ -4,24 +4,19 @@ This directory contains a list of commonly-used, tested, operations files.
 
 Unless otherwise stated, they can be combined in any permutation and in any order.
 
-### [add-broker.yml](https://github.com/cloudfoundry/cf-mysql-deployment/tree/master/operations/add-broker.yml)
+### Registering the proxy route
 
-Adds multiple instances of the
-[cf-mysql-broker](https://github.com/cloudfoundry/cf-mysql-broker)
-to enable integration of the MySQL database with Cloud Foundry via the
-[Service Broker API](https://docs.cloudfoundry.org/services/api.html).
+[This operations file](https://github.com/cloudfoundry/cf-mysql-deployment/tree/master/operations/register-proxy-route.yml)
+ registers routes with the Cloud Foundry router which point to the dashboard pages hosted by the proxies deployed as part of `cf-mysql-release`.
 
-Example usage:
 
-```
--o add-broker.yml \
+### Enabling the Service Broker
 
--v cf_admin_username=cf-admin-username \
--v cf_admin_password=cf-admin-password
--v cf_api_url=api.my-cf.com \
--v app_domains="[e.g. myapps.my-cf.com]" \
--v skip_ssl_validation=false
-```
+To enable integration of the MySQL database with Cloud Foundry (as a Cloud Foundry service), you should include the
+[add a broker](https://github.com/cloudfoundry/cf-mysql-deployment/tree/master/operations/add-broker.yml)
+operations file, as well as the [register the proxy route](https://github.com/cloudfoundry/cf-mysql-deployment/tree/master/operations/register-proxy-route.yml)
+operations file.
+
 
 ### [disable-cross-deployment-links.yml](https://github.com/cloudfoundry/cf-mysql-deployment/tree/master/operations/disable-cross-deployment-links.yml)
 
@@ -48,7 +43,7 @@ Example usage:
 -v nats="{password: some-nats-password, user: nats, port: 4222, machines: [10.0.31.191]}"
 ```
 
-### [mysql-host.yml](https://github.com/cloudfoundry/cf-mysql-deployment/tree/master/operations/mysql-host.yml)
+### [configure-broker-load-balancer.yml](https://github.com/cloudfoundry/cf-mysql-deployment/tree/master/operations/configure-broker-load-balancer.yml)
 
 Provides a value for the property `cf_mysql.host` property, which is host the
 broker provides to applications via service instance bindings.
@@ -59,7 +54,7 @@ achieve HA (e.g. DNS, floating virtual IPs etc).
 Example usage:
 
 ```
--o mysql-host.yml \
+-o configure-broker-load-balancer.yml \
 
 -v cf_mysql_host=my-load-balancer-url
 ```
