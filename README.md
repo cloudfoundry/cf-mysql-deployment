@@ -152,7 +152,7 @@ and write them to the provided vars store file.
 By default the deployment manifest will not deploy brokers, nor try to register
 routes for the proxies with a Cloud Foundry router. To enable integration with
 Cloud Foundry, operations files are provided to
-[add brokers](https://github.com/cloudfoundry/cf-mysql-deployment/operations/tree/master/add-broker.yml)
+[add brokers](https://github.com/cloudfoundry/cf-mysql-deployment/tree/master/operations/add-broker.yml)
 and
 [register proxy routes](https://github.com/cloudfoundry/cf-mysql-deployment/tree/master/operations/register-proxy-route.yml).
 
@@ -167,7 +167,7 @@ bosh \
   -d cf-mysql \
   deploy \
   ~/workspace/cf-msyql-deployment/cf-mysql-deployment.yml \
-  -o <path-to-operations
+  -o <path-to-operations-file>
 ```
 
 ### Upgrading from previous deployment topologies
@@ -226,24 +226,15 @@ Refer to [these docs](https://bosh.io/docs/migrated-from.html) on migrating from
 
 ## Operations files
 
-Supported operations files (e.g. adding a broker for
-Cloud Foundry integration) can be found in the
-[operations](https://github.com/cloudfoundry/cf-mysql-deployment/tree/master/operations)
-directory.
+Additional example operations files used for common configurations of `cf-mysql-release` (e.g. adding a broker for
+Cloud Foundry integration) can be found in the [operations](https://github.com/cloudfoundry/cf-mysql-deployment/tree/master/operations)
+directory. See the README in that directory for a description of which (combinations) of files to use for enabling each common feature set.
 
 The [manifest template](https://github.com/cloudfoundry/cf-mysql-deployment/tree/master/cf-mysql-deployment.yml)
-is not intended to be modified; any changes you need to make should be added to
-environment-specific operations files, e.g. `cf-mysql-operations.yml`
-
-Operations files are optional files for modifying the deployment manifest.
-They are intended for structural and non-secret changes, e.g. modifying the
-`cf_mysql.mysql.max_connections` property. Secret values should be placed in
-variables files (see below for more information on variables files).
+is not intended to be modified; any changes you need to make should be added to operations files.
 
 The syntax for operations files is detailed
-[here](http://bosh.io/docs/cli-ops-files.html),
-and example operations files can be found
-[here](https://github.com/cloudfoundry/cf-mysql-deployment/tree/master/operations).
+[here](http://bosh.io/docs/cli-ops-files.html).
 
 Operations files can be provided at deploy-time as follows:
 
@@ -253,22 +244,10 @@ bosh \
   -o <path-to-operations-file>
 ```
 
-For instance, our template assumes your cloud-config has a persistent-disk type
-named "large". If your cloud-config specifies a type "small", you would add the
-following to `cf-mysql-operations.yml`:
-
-```yml
-
----
-- type: replace
-  path: /instance_groups/name=mysql/persistent_disk_type
-  value: small
-```
-
 ### Variables files
 
 Variables files are a flat-format key-value yaml file which contains sensitive
-information such as password, ssl keys/certs etc.
+information such as passwords, ssl keys/certs etc.
 
 They can be provided at deploy-time as follows:
 
@@ -281,7 +260,7 @@ bosh \
 We provide a default set of variables intended for a local bosh-lite environment
 [here](https://github.com/cloudfoundry/cf-mysql-deployment/tree/master/bosh-lite/default-vars.yml).
 
-Use this as an example for your environment-specific var-file, e.g. `cf-mysql-vars.yml`
+Use this as an example for your environment-specific variables file.
 
 ### Cross-deployment links
 

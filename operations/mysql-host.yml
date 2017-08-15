@@ -1,4 +1,0 @@
----
-- type: replace
-  path: /properties/cf_mysql/host?
-  value: ((cf_mysql_host))
