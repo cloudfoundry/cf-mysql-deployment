@@ -1,4 +1,4 @@
 ---
 - type: replace
-  path: /properties/cf_mysql?/mysql?/disable_auto_sst
+  path: /instance_groups/name=mysql/jobs/name=mysql/properties/cf_mysql/mysql/disable_auto_sst?
   value: false

@@ -25,7 +25,18 @@ instance_groups:
   stemcell: default
   persistent_disk: 10000
   jobs:
-  - {release: cf-mysql, name: mysql}
+  - name: mysql
+    release: cf-mysql
+    properties:
+      cf_mysql:
+        mysql:
+          admin_password: ((cf_mysql_mysql_admin_password))
+          cluster_health:
+            password: ((cf_mysql_mysql_cluster_health_password))
+          galera_healthcheck:
+            endpoint_username: galera-healthcheck
+            endpoint_password: ((cf_mysql_mysql_galera_healthcheck_endpoint_password))
+            db_password: ((cf_mysql_mysql_galera_healthcheck_db_password))
   migrated_from:
   - {name: mysql_z1, az: z1}
   - {name: mysql_z2, az: z2}
@@ -37,7 +48,15 @@ instance_groups:
   vm_type: default
   stemcell: default
   jobs:
-  - {release: cf-mysql, name: arbitrator}
+  - release: cf-mysql
+    name: arbitrator
+    properties:
+      cf_mysql:
+        mysql:
+          admin_password: ((cf_mysql_mysql_admin_password))
+          galera_healthcheck:
+            endpoint_username: galera-healthcheck
+            endpoint_password: ((cf_mysql_mysql_galera_healthcheck_endpoint_password))
   migrated_from:
   - {name: arbitrator_z3, az: z3}
 
@@ -90,7 +109,14 @@ instance_groups:
   vm_type: default
   stemcell: default
   jobs:
-  - {release: cf-mysql, name: verify-cluster-schemas}
+  - name: verify-cluster-schemas
+    release: cf-mysql
+    properties:
+      cf_mysql:
+        mysql:
+          admin_password: ((cf_mysql_mysql_admin_password))
+          galera_healthcheck:
+            endpoint_password: ((cf_mysql_mysql_galera_healthcheck_endpoint_password))
 
 - name: smoke-tests
   instances: 1
@@ -103,44 +129,13 @@ instance_groups:
   - name: smoke-tests
     release: cf-mysql
     properties:
-      cf:
-        admin_username: ((cf_admin_username))
-        admin_password: ((cf_admin_password))
-        api_url: ((cf_api_url))
-        app_domains: ((app_domains))
-        skip_ssl_validation: ((cf_skip_ssl_validation))
       cf_mysql:
-        external_host: ((cf_mysql_external_host))
         mysql:
           admin_password: ((cf_mysql_mysql_admin_password))
         proxy:
-          api_username: proxy
           api_password: ((cf_mysql_proxy_api_password))
         smoke_tests:
           standalone_tests_only: true
-          password: ((cf_mysql_smoke_tests_password))
-
-properties:
-  cf:
-    admin_username: ((cf_admin_username))
-    admin_password: ((cf_admin_password))
-    api_url: ((cf_api_url))
-    skip_ssl_validation: ((cf_skip_ssl_validation))
-  cf_mysql:
-    mysql:
-      admin_password: ((cf_mysql_mysql_admin_password))
-      cluster_health:
-        password: ((cf_mysql_mysql_cluster_health_password))
-      galera_healthcheck:
-        db_password: ((cf_mysql_mysql_galera_healthcheck_db_password))
-        endpoint_username: galera-healthcheck
-        endpoint_password: ((cf_mysql_mysql_galera_healthcheck_endpoint_password))
-      persistent_disk: 100000
-      roadmin_password: ((cf_mysql_mysql_roadmin_password))
-    proxy:
-      api_password: ((cf_mysql_proxy_api_password))
-    external_host: ((cf_mysql_external_host))
-  nats: ((nats))
 
 variables:
 - name: cf_mysql_mysql_admin_password
