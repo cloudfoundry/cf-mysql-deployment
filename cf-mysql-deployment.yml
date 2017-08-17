@@ -89,7 +89,14 @@ instance_groups:
   vm_type: default
   stemcell: default
   jobs:
-  - {release: cf-mysql, name: bootstrap}
+  - name: bootstrap
+    release: cf-mysql
+    properties:
+      cf_mysql:
+        mysql:
+          galera_healthcheck:
+            endpoint_username: galera-healthcheck
+            endpoint_password: ((cf_mysql_mysql_galera_healthcheck_endpoint_password))
 
 - name: rejoin-unsafe
   instances: 1
@@ -99,7 +106,14 @@ instance_groups:
   vm_type: default
   stemcell: default
   jobs:
-  - {release: cf-mysql, name: rejoin-unsafe}
+  - name: rejoin-unsafe}
+    release: cf-mysql
+    properties:
+      cf_mysql:
+        mysql:
+          galera_healthcheck:
+            endpoint_username: galera-healthcheck
+            endpoint_password: ((cf_mysql_mysql_galera_healthcheck_endpoint_password))
 
 - name: verify-cluster-schemas
   instances: 1
@@ -116,6 +130,7 @@ instance_groups:
         mysql:
           admin_password: ((cf_mysql_mysql_admin_password))
           galera_healthcheck:
+            endpoint_username: galera-healthcheck
             endpoint_password: ((cf_mysql_mysql_galera_healthcheck_endpoint_password))
 
 - name: smoke-tests
