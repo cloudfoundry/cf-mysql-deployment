@@ -30,7 +30,6 @@
             db_password: ((cf_mysql_broker_db_password))
             quota_enforcer:
               password: ((cf_mysql_broker_quota_enforcer_password))
-              ignored_users: [repcanary]
             services: &broker_services
             - name: p-mysql
               id: 44b26033-1f54-4087-b7bc-da9652c2a539
