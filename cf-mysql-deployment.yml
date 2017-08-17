@@ -106,7 +106,7 @@ instance_groups:
   vm_type: default
   stemcell: default
   jobs:
-  - name: rejoin-unsafe}
+  - name: rejoin-unsafe
     release: cf-mysql
     properties:
       cf_mysql:
