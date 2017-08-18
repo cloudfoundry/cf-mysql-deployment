@@ -39,7 +39,8 @@ Example usage:
 
 ```
 -o disable-smoke-tests-cross-deployment-links.yml \
--o disable-route-registrar-cross-deployment-links.yml \
+-o disable-broker-route-registrar-cross-deployment-links.yml \
+-o disable-proxy-route-registrar-cross-deployment-links.yml \
 
 -v nats="{password: some-nats-password, user: nats, port: 4222, machines: [10.0.31.191]}" \
 -v admin_username=admin \
