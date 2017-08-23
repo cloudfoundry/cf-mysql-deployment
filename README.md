@@ -97,6 +97,7 @@ Once a load balancer is configured, the brokers will hand out the address of the
 
 - **Note:** When using an Elastic Load Balancer (ELB) on Amazon, make sure to create the ELB in the same VPC as your cf-mysql deployment
 - **Note:** For all load balancers, take special care to configure health checks to use the health_port of the proxies (default 1936). Do not configure the load balancer health check to use port 3306.
+- **You must use the IP address(es) of your load balancer in the p-mysql [security group](#security-groups)**, below. Otherwise, applications will not be able to connect to the database.
 
 There are two ways to configure a load balancer, either automatically through your IaaS or by supplying static IPs for the proxies
 
