@@ -1,0 +1,7 @@
+---
+- type: replace
+  path: /instance_groups/name=broker/jobs/name=cf-mysql-broker/properties/syslog_aggregator?
+  value:
+    address: ((syslog_aggregator_address))
+    port: ((syslog_aggregator_port))
+    transport: ((syslog_aggregator_transport))
