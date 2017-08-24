@@ -33,9 +33,6 @@ instance_groups:
       cf_mysql:
         smoke_tests:
           db_password: ((cf_mysql_smoke_tests_db_password))
-  migrated_from:
-  - {name: mysql_z1, az: z1}
-  - {name: mysql_z2, az: z2}
 
 - name: arbitrator
   instances: 1
@@ -52,8 +49,6 @@ instance_groups:
           admin_password: ((cf_mysql_mysql_admin_password))
           galera_healthcheck:
             endpoint_password: ((cf_mysql_mysql_galera_healthcheck_endpoint_password))
-  migrated_from:
-  - {name: arbitrator_z3, az: z3}
 
 - name: proxy
   instances: 2
@@ -72,10 +67,6 @@ instance_groups:
       mysql-database:
         as: mysql-database
         shared: true
-
-  migrated_from:
-  - {name: proxy_z1, az: z1}
-  - {name: proxy_z2, az: z2}
 
 - name: bootstrap
   instances: 1
