@@ -1,0 +1,23 @@
+- type: replace
+  path: /instance_groups/name=proxy/jobs/name=consul_agent/consumes?
+  value:
+    consul: nil
+    consul_client: nil
+    consul_common: nil
+    consul_server: nil
+
+- type: replace
+  path: /instance_groups/name=proxy/jobs/name=consul_agent/properties?/consul
+  value:
+    agent:
+      datacenter:
+      domain: cf.internal
+      log_level:
+      servers:
+        lan: ((consul_agent_servers_lan))
+    agent_cert: ((consul_agent_cert))
+    agent_key: ((consul_agent_key))
+    ca_cert: ((consul_ca_cert))
+    encrypt_keys: ((consul_encrypt_keys))
+    server_cert: ((consul_server_cert))
+    server_key: ((consul_server_key))
