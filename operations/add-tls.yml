@@ -1,9 +1,5 @@
 ---
 - type: replace
-  path: /instance_groups/name=mysql/jobs/name=mysql/properties/cf_mysql/mysql/tls?/ca_certificate
-  value: ((cf_mysql_mysql_tls_ca_certificate.ca))
-
-- type: replace
   path: /instance_groups/name=mysql/jobs/name=mysql/properties/cf_mysql/mysql/tls?/server_certificate
   value: ((cf_mysql_mysql_tls_server_certificate.certificate))
 
