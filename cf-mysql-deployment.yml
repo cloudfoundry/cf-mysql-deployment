@@ -141,9 +141,9 @@ variables:
 
 releases:
 - name: cf-mysql
-  url: https://bosh.io/d/github.com/cloudfoundry/cf-mysql-release?v=36
-  version: "36"
-  sha1: 746240c005465ffa105ee89e53e401e311b4fbf8
+  url: https://bosh.io/d/github.com/cloudfoundry/cf-mysql-release?v=36.7.0
+  version: 36.7.0
+  sha1: 3130fa20304dbc6a61397bdf1695ad038c483c52
 stemcells:
 - alias: default
   os: ubuntu-trusty
