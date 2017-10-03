@@ -32,3 +32,8 @@ networks:
     gateway: 10.244.9.1
     cloud_properties:
       name: random
+vm_extensions:
+- name: mysql-proxy-lb
+  cloud_properties:
+    ports:
+    - host: 3306
