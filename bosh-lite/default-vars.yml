@@ -1,5 +1,7 @@
 ---
 cf_mysql_external_host: p-mysql.bosh-lite.com
+cf_mysql_host: bosh-lite.com
 cf_admin_password: REPLACE_WITH_CF_ADMIN_PASSWORD
 cf_api_url: https://api.bosh-lite.com
 cf_skip_ssl_validation: true
+proxy_vm_extension: mysql-proxy-lb
