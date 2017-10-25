@@ -12,7 +12,7 @@
   value: ((cf_mysql_mysql_tls_server_certificate.private_key))
 
 - type: replace
-  path: /variables/-
+  path: /variables?/-
   value:
     name: cf_mysql_mysql_tls_server_certificate
     type: certificate
