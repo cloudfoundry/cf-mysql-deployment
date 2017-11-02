@@ -128,23 +128,23 @@
             services: *broker_services
 
 - type: replace
-  path: /instance_groups/name=smoke-tests/jobs/name=smoke-tests/properties/cf?/skip_ssl_validation
+  path: /instance_groups/name=smoke-tests-vm/jobs/name=smoke-tests/properties/cf?/skip_ssl_validation
   value: ((cf_skip_ssl_validation))
 
 - type: replace
-  path: /instance_groups/name=smoke-tests/jobs/name=smoke-tests/properties/cf?/admin_username
+  path: /instance_groups/name=smoke-tests-vm/jobs/name=smoke-tests/properties/cf?/admin_username
   value: admin
 
 - type: replace
-  path: /instance_groups/name=smoke-tests/jobs/name=smoke-tests/properties/cf?/admin_password
+  path: /instance_groups/name=smoke-tests-vm/jobs/name=smoke-tests/properties/cf?/admin_password
   value: ((cf_admin_password))
 
 - type: replace
-  path: /instance_groups/name=smoke-tests/jobs/name=smoke-tests/properties/cf?/api_url
+  path: /instance_groups/name=smoke-tests-vm/jobs/name=smoke-tests/properties/cf?/api_url
   value: ((cf_api_url))
 
 - type: replace
-  path: /instance_groups/name=smoke-tests/jobs/name=smoke-tests/properties/cf_mysql/smoke_tests/standalone_tests_only?
+  path: /instance_groups/name=smoke-tests-vm/jobs/name=smoke-tests/properties/cf_mysql/smoke_tests/standalone_tests_only?
   value: false
 
 - type: replace
@@ -157,23 +157,23 @@
   path: /instance_groups/name=mysql/jobs/name=smoke-tests-user
 
 - type: remove
-  path: /instance_groups/name=smoke-tests/jobs/name=smoke-tests/properties/cf_mysql/smoke_tests/db_password
+  path: /instance_groups/name=smoke-tests-vm/jobs/name=smoke-tests/properties/cf_mysql/smoke_tests/db_password
 
 - type: replace
-  path: /instance_groups/name=smoke-tests/jobs/name=smoke-tests/properties/cf_mysql/external_host?
+  path: /instance_groups/name=smoke-tests-vm/jobs/name=smoke-tests/properties/cf_mysql/external_host?
   value: ((cf_mysql_external_host))
 
 - type: replace
-  path: /instance_groups/name=smoke-tests/jobs/name=smoke-tests/properties/cf_mysql/smoke_tests/password?
+  path: /instance_groups/name=smoke-tests-vm/jobs/name=smoke-tests/properties/cf_mysql/smoke_tests/password?
   value: ((cf_mysql_smoke_tests_password))
 
 - type: replace
-  path: /instance_groups/name=smoke-tests/jobs/name=smoke-tests/consumes?
+  path: /instance_groups/name=smoke-tests-vm/jobs/name=smoke-tests/consumes?
   value:
     cloud_controller: {from: cloud_controller, deployment: cf}
 
 - type: replace
-  path: /instance_groups/name=smoke-tests/jobs/name=smoke-tests/properties/cf_mysql/broker?/services
+  path: /instance_groups/name=smoke-tests-vm/jobs/name=smoke-tests/properties/cf_mysql/broker?/services
   value: *broker_services
 
 - type: replace

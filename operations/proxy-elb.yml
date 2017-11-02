@@ -4,5 +4,5 @@
   value: ((proxy_vm_extension))
 
 - type: replace
-  path: /instance_groups/name=smoke-tests/jobs/name=smoke-tests/properties/cf_mysql/host?
+  path: /instance_groups/name=smoke-tests-vm/jobs/name=smoke-tests/properties/cf_mysql/host?
   value: ((cf_mysql_host))

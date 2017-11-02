@@ -105,7 +105,7 @@ instance_groups:
           galera_healthcheck:
             endpoint_password: ((cf_mysql_mysql_galera_healthcheck_endpoint_password))
 
-- name: smoke-tests
+- name: smoke-tests-vm
   instances: 1
   lifecycle: errand
   azs: [z1]
