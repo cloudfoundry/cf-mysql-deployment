@@ -82,7 +82,7 @@
 - type: replace
   path: /instance_groups/-
   value:
-    name: broker-registrar
+    name: broker-registrar-vm
     instances: 1
     lifecycle: errand
     azs: [z1]
@@ -107,7 +107,7 @@
 - type: replace
   path: /instance_groups/-
   value:
-    name: deregister-and-purge-instances
+    name: deregister-and-purge-instances-vm
     instances: 1
     lifecycle: errand
     azs: [z1]

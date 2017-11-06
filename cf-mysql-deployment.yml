@@ -68,7 +68,7 @@ instance_groups:
         as: mysql-database
         shared: true
 
-- name: bootstrap
+- name: bootstrap-vm
   instances: 1
   lifecycle: errand
   azs: [z1]
@@ -78,7 +78,7 @@ instance_groups:
   jobs:
   - {release: cf-mysql, name: bootstrap}
 
-- name: rejoin-unsafe
+- name: rejoin-unsafe-vm
   instances: 1
   lifecycle: errand
   azs: [z1]
@@ -88,7 +88,7 @@ instance_groups:
   jobs:
   - {release: cf-mysql, name: rejoin-unsafe}
 
-- name: verify-cluster-schemas
+- name: verify-cluster-schemas-vm
   instances: 1
   lifecycle: errand
   azs: [z1]
