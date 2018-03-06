@@ -167,7 +167,7 @@ bosh \
   -e my-director \
   -d cf-mysql \
   deploy \
-  ~/workspace/cf-msyql-deployment/cf-mysql-deployment.yml \
+  ~/workspace/cf-mysql-deployment/cf-mysql-deployment.yml \
   -o <path-to-operations-file>
 ```
 
@@ -192,7 +192,7 @@ bosh \
   -e my-director \
   -d my-deployment \
   deploy \
-  ~/workspace/cf-msyql-deployment/cf-mysql-deployment.yml \
+  ~/workspace/cf-mysql-deployment/cf-mysql-deployment.yml \
   -o <path-to-deployment-name-operations> \
   [-o <path-to-additional-operations>] \
   -l <path-to-vars-file> \
