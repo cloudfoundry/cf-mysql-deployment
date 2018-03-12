@@ -1,0 +1,107 @@
+name: pxc
+
+update:
+  canaries: 1
+  canary_watch_time: 10000-600000
+  update_watch_time: 10000-600000
+  max_in_flight: 1
+  serial: true
+
+instance_groups:
+- name: mysql
+  instances: 3
+  azs: [z1, z2]
+  networks: [{name: default}]
+  vm_type: default
+  stemcell: default
+  persistent_disk: 10000
+  jobs:
+  - name: mysql
+    release: pxc
+    properties:
+      long_query_time: 10
+      admin_password: ((cf_mysql_mysql_admin_password))
+      cluster_health:
+        password: ((cf_mysql_mysql_cluster_health_password))
+      galera_healthcheck:
+        endpoint_password: ((cf_mysql_mysql_galera_healthcheck_endpoint_password))
+        db_password: ((cf_mysql_mysql_galera_healthcheck_db_password))
+      tls:
+        galera: ((galera_server_certificate))
+        server: ((mysql_server_certificate))
+        # server: ((mysql_server))
+  # - name: smoke-tests-user
+  #   release: pxc
+  #   properties:
+  #     db_password: ((cf_mysql_smoke_tests_db_password))
+
+# - name: proxy
+#   instances: 2
+#   azs: [z1, z2]
+#   networks: [{name: default}]
+#   vm_type: default
+#   stemcell: default
+#   jobs:
+#   - name: proxy
+#     release: pxc
+#     properties:
+#       api_password: ((cf_mysql_proxy_api_password))
+
+# - name: smoke-tests-vm
+#   instances: 1
+#   lifecycle: errand
+#   azs: [z1]
+#   networks: [{name: default}]
+#   vm_type: default
+#   stemcell: default
+#   jobs:
+#   - name: smoke-tests
+#     release: pxc
+#     properties:
+#       admin_password: ((cf_mysql_mysql_admin_password))
+#       api_password: ((cf_mysql_proxy_api_password))
+#       db_password: ((cf_mysql_smoke_tests_db_password))
+#       standalone_tests_only: true
+
+variables:
+- name: cf_mysql_mysql_admin_password
+  type: password
+- name: cf_mysql_mysql_cluster_health_password
+  type: password
+- name: cf_mysql_mysql_galera_healthcheck_db_password
+  type: password
+- name: cf_mysql_mysql_galera_healthcheck_endpoint_password
+  type: password
+- name: cf_mysql_proxy_api_password
+  type: password
+- name: cf_mysql_smoke_tests_db_password
+  type: password
+- name: galera_ca
+  type: certificate
+  options:
+    is_ca: true
+    common_name: galera_ca_new
+- name: mysql_server_ca
+  type: certificate
+  options:
+    is_ca: true
+    common_name: mysql_server_ca
+- name: galera_server_certificate
+  type: certificate
+  options:
+    ca: galera_ca
+    extended_key_usage: [ "server_auth", "client_auth" ]
+- name: mysql_server_certificate
+  type: certificate
+  options:
+    ca: mysql_server_ca
+    common_name: "sql-db.service.cf.internal"
+
+releases:
+- name: pxc
+  version: create
+  url: //Users/pivotal/workspace/pxc-release
+stemcells:
+- alias: default
+  os: ubuntu-trusty
+  version: latest
