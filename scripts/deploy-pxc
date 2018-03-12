@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -eux
+
+my_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+root_dir="$( cd "${my_dir}/.." && pwd )"
+
+export BOSH_ENVIRONMENT="${BOSH_ENVIRONMENT:-192.168.50.6}"
+export BOSH_DEPLOYMENT="${BOSH_DEPLOYMENT:-pxc}"
+
+pushd "${root_dir}" > /dev/null
+  #bosh-cli \
+  bosh \
+    deploy \
+    --no-redact \
+    "${root_dir}/pxc-deployment.yml" \
+    --vars-store "/Users/pivotal/workspace/deployments-core-services/local-bosh-lite/local_state/pxc-vars.yml" \
+    -l "/Users/pivotal/workspace/deployments-core-services/local-bosh-lite/local_state/bosh-creds.yml" \
+    "$@"
+popd > /dev/null
