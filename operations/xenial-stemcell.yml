@@ -1,0 +1,8 @@
+---
+- type: replace
+  path: /stemcells/os=ubuntu-trusty
+  value:
+    alias: default
+    os: ubuntu-xenial
+    version: latest
+
