@@ -3,9 +3,16 @@
   path: /releases/name=routing?
   value:
     name: routing
-    version: "0.154.0"
-    url: https://bosh.io/d/github.com/cloudfoundry-incubator/cf-routing-release?v=0.154.0
-    sha1: 6f15de5699cbbce8a49ac3a1a49185460ef93f95
+    version: "0.180.0"
+    url: https://bosh.io/d/github.com/cloudfoundry-incubator/cf-routing-release?v=0.180.0
+    sha1: 990c2c319e6063573eec18dbeb7c3631a382db7d
+- type: replace
+  path: /releases/name=bpm?
+  value:
+    name: bpm
+    version: "0.9.0"
+    url: https://bosh.io/d/github.com/cloudfoundry-incubator/bpm-release?v=0.9.0
+    sha1: 0cb3242063c95271c95b62de3a6d07072aff0b29
 
 - type: replace
   path: /instance_groups/-
@@ -78,6 +85,9 @@
             health_check:
               name: script
               script_path: /var/vcap/jobs/cf-mysql-broker/bin/healthcheck.sh
+    - name: bpm
+      release: bpm
+
 
 - type: replace
   path: /instance_groups/-

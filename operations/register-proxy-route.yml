@@ -3,9 +3,16 @@
   path: /releases/name=routing?
   value:
     name: routing
-    version: "0.154.0"
-    url: https://bosh.io/d/github.com/cloudfoundry-incubator/cf-routing-release?v=0.154.0
-    sha1: 6f15de5699cbbce8a49ac3a1a49185460ef93f95
+    version: "0.180.0"
+    url: https://bosh.io/d/github.com/cloudfoundry-incubator/cf-routing-release?v=0.180.0
+    sha1: 990c2c319e6063573eec18dbeb7c3631a382db7d
+- type: replace
+  path: /releases/name=bpm?
+  value:
+    name: bpm
+    version: "0.9.0"
+    url: https://bosh.io/d/github.com/cloudfoundry-incubator/bpm-release?v=0.9.0
+    sha1: 0cb3242063c95271c95b62de3a6d07072aff0b29
 
 - type: replace
   path: /instance_groups/name=proxy/jobs/-
@@ -29,6 +36,12 @@
           uris:
           - *proxy_base_uri
           # The switchboard aggregator page assumes there is only a single route registered for the proxies
+
+- type: replace
+  path: /instance_groups/name=proxy/jobs/name=bpm?
+  value:
+    name: bpm
+    release: bpm
 
 # make sure to match what the route_registrar is registering above in cf-mysql-proxy route
 - type: replace
