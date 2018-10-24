@@ -38,12 +38,6 @@
           - *proxy_base_uri
           # The switchboard aggregator page assumes there is only a single route registered for the proxies
 
-- type: replace
-  path: /instance_groups/name=proxy/jobs/name=bpm?
-  value:
-    name: bpm
-    release: bpm
-
 # make sure to match what the route_registrar is registering above in cf-mysql-proxy route
 - type: replace
   path: /instance_groups/name=proxy/jobs/name=proxy/properties/cf_mysql/proxy/api_uri?
