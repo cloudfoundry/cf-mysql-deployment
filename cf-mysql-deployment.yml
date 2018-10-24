@@ -1,5 +1,14 @@
 name: cf-mysql
 
+addons:
+- name: bpm
+  include:
+    stemcell:
+    - os: ubuntu-trusty
+  jobs:
+  - name: bpm
+    release: bpm
+
 update:
   canaries: 1
   canary_watch_time: 10000-600000
