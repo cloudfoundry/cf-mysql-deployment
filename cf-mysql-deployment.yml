@@ -147,9 +147,9 @@ variables:
 
 releases:
 - name: cf-mysql
-  url: https://bosh.io/d/github.com/cloudfoundry/cf-mysql-release?v=36.17.0
-  version: 36.17.0
-  sha1: 04cbfafa0a2c11b133da20de8282595c98bc0049
+  url: https://bosh.io/d/github.com/cloudfoundry/cf-mysql-release?v=36.18.0
+  version: 36.18.0
+  sha1: 77fdcbac486994bb8170a88f29a599ce848ccc66
 - name: bpm
   url: ""
   version: latest
@@ -157,4 +157,4 @@ releases:
 stemcells:
 - alias: default
   os: ubuntu-trusty
-  version: "3586.63"
+  version: "3586.71"
