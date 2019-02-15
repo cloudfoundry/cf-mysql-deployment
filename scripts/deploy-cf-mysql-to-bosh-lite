@@ -9,7 +9,7 @@ export BOSH_ENVIRONMENT="${BOSH_ENVIRONMENT:-192.168.50.6}"
 export BOSH_DEPLOYMENT="${BOSH_DEPLOYMENT:-cf-mysql}"
 
 pushd "${root_dir}" > /dev/null
-  gobosh \
+  bosh \
     deploy \
     "${root_dir}/cf-mysql-deployment.yml" \
     -o "${root_dir}/operations/bosh-lite.yml" \
