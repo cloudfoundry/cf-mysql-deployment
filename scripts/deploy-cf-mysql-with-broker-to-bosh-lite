@@ -5,7 +5,22 @@ set -eu
 my_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 root_dir="$( cd "${my_dir}/.." && pwd )"
 
+if [[ -z "${CF_API_ENDPOINT}" ]]; then
+  echo "\$CF_API_ENDPOINT is not set. You probably forgot to target your environment."
+  echo "These BOSH variables may need to be changed:"
+  echo "  cf_mysql_external_host, cf_mysql_host, cf_api_url"
+fi
+
+# Strip "api." prefix from the endpoint.
+root_endpoint=${CF_API_ENDPOINT#"api."}
+
+cf_mysql_host="${root_endpoint}"
+cf_mysql_external_host="p-mysql.${root_endpoint}"
+
 "${my_dir}/deploy-cf-mysql-to-bosh-lite" \
   -o "${root_dir}/operations/add-broker.yml" \
   -o "${root_dir}/operations/register-proxy-route.yml" \
+  -v cf_mysql_external_host="${cf_mysql_external_host}" \
+  -v cf_mysql_host="${cf_mysql_host}" \
+  -v cf_api_url="https://${CF_API_ENDPOINT}" \
   "$@"

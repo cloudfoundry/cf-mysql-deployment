@@ -13,8 +13,11 @@ pushd "${root_dir}" > /dev/null
     deploy \
     "${root_dir}/cf-mysql-deployment.yml" \
     -o "${root_dir}/operations/bosh-lite.yml" \
-    -o "${root_dir}/operations/latest-versions.yml" \
+    -o "${root_dir}/operations/xenial-stemcell.yml" \
     -l "${root_dir}/bosh-lite/default-vars.yml" \
+    -v "cf_mysql_external_host=p-mysql.paper-bug.pmysql.farm" \
+    -v "cf_mysql_host=paper-bug.pmysql.farm" \
+    -v "cf_api_url=https://api.paper-bug.pmysql.farm" \
     --no-redact \
     "$@"
 popd > /dev/null
