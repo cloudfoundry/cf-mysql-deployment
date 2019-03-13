@@ -8,6 +8,12 @@ root_dir="$( cd "${my_dir}/.." && pwd )"
 export BOSH_ENVIRONMENT="${BOSH_ENVIRONMENT:-192.168.50.6}"
 export BOSH_DEPLOYMENT="${BOSH_DEPLOYMENT:-cf-mysql}"
 
+# Strip "api." prefix from the endpoint.
+root_endpoint=${CF_API_ENDPOINT#"api."}
+
+cf_mysql_host="${root_endpoint}"
+cf_mysql_external_host="p-mysql.${root_endpoint}"
+
 pushd "${root_dir}" > /dev/null
   bosh \
     deploy \
@@ -15,9 +21,9 @@ pushd "${root_dir}" > /dev/null
     -o "${root_dir}/operations/bosh-lite.yml" \
     -o "${root_dir}/operations/xenial-stemcell.yml" \
     -l "${root_dir}/bosh-lite/default-vars.yml" \
-    -v "cf_mysql_external_host=p-mysql.paper-bug.pmysql.farm" \
-    -v "cf_mysql_host=paper-bug.pmysql.farm" \
-    -v "cf_api_url=https://api.paper-bug.pmysql.farm" \
+    -v cf_mysql_external_host="${cf_mysql_external_host}" \
+    -v cf_mysql_host="${cf_mysql_host}" \
+    -v cf_api_url="https://${CF_API_ENDPOINT}" \
     --no-redact \
     "$@"
 popd > /dev/null
