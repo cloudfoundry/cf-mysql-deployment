@@ -13,7 +13,7 @@
     name: "bpm"
     version: "0.12.2"
     url: "https://bosh.io/d/github.com/cloudfoundry-incubator/bpm-release?v=0.12.2"
-    sha1: "f2edbf3d1417a253205338c9941ca989cd2f8331"
+    sha1: "ea75963ca3e8eaf9f98d4b1d5c4526402bc07549"
 
 - type: replace
   path: /instance_groups/name=proxy/jobs/-
