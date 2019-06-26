@@ -8,6 +8,11 @@ vm_types:
     ephemeral_disk:
       size: 1024
       type: gp2
+- name: micro
+  cloud_properties:
+    ephemeral_disk:
+      size: 1024
+      type: gp2
 compilation:
   workers: 4
   network: default
