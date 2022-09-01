@@ -1,3 +1,7 @@
+DEPRECATED: cf-mysql-release is deprecated and this repo is no longer maintained.
+
+            See [pxc-release](https://github.com/cloudfoundry/pxc-release)
+
 # Cloud Foundry MySQL Bosh Deployment
 
 ## Table of contents
